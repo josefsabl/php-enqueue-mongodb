@@ -67,8 +67,8 @@ class MongodbProducer implements Producer
         $mongoMessage = [
             'published_at' => $publishedAt,
             'body' => $body,
-            'headers' => JSON::encode($message->getHeaders()),
-            'properties' => JSON::encode($message->getProperties()),
+            'headers' => $message->getHeaders(),
+            'properties' => $message->getProperties(),
             'priority' => $message->getPriority(),
             'queue' => $destination->getName(),
             'redelivered' => $message->isRedelivered(),
