@@ -170,7 +170,7 @@ class MongodbContext implements Context
 
     private static $extraIndices = [];
 
-    public function setExtraIndices(array $indices): void
+    public static function setExtraIndices(array $indices): void
     {
         static::$extraIndices = $indices;
     }
