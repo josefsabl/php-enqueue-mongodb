@@ -122,11 +122,12 @@ class MongodbConsumer implements Consumer
         $collection = $this->context->getCollection();
         $message = $collection->findOneAndDelete(
             [
-                'queue' => $this->queue->getName(),
-                '$or' => [
-                    ['delayed_until' => ['$exists' => false]],
-                    ['delayed_until' => ['$lte' => $now]],
-                ],
+//                'queue' => $this->queue->getName(),
+//                '$or' => [
+//                    ['delayed_until' => ['$exists' => false]],
+//                    ['delayed_until' => ['$lte' => $now]],
+//                ],
+                'delayed_until' => ['$lte' => $now],
             ],
             [
                 'sort' => ['priority' => -1, 'published_at' => 1],

@@ -85,6 +85,8 @@ class MongodbProducer implements Producer
             }
 
             $mongoMessage['delayed_until'] = time() + (int) $delay / 1000;
+        } else {
+            $mongoMessage['delayed_until'] = 0;
         }
 
         $timeToLive = $message->getTimeToLive();
