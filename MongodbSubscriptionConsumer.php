@@ -52,11 +52,7 @@ class MongodbSubscriptionConsumer implements SubscriptionConsumer
 
             $result = $this->context->getCollection()->findOneAndDelete(
                 [
-                    'queue' => ['$in' => array_keys($currentQueueNames)],
-                    '$or' => [
-                        ['delayed_until' => ['$exists' => false]],
-                        ['delayed_until' => ['$lte' => time()]],
-                    ],
+                    'delayed_until' => ['$lte' => time()],
                 ],
                 [
                     'sort' => ['priority' => -1, 'published_at' => 1],
