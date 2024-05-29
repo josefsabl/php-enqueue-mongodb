@@ -162,7 +162,7 @@ class MongodbContext implements Context
 //        $collection->createIndex(['priority' => -1, 'published_at' => 1], ['name' => 'enqueue_priority']);
 //        $collection->createIndex(['delayed_until' => 1], ['name' => 'enqueue_delayed']);
 //        $collection->createIndex(['queue' => 1, 'priority' => -1, 'published_at' => 1, 'delayed_until' => 1], ['name' => 'enqueue_combined']);
-        $collection->createIndex(['delayed_until' => 1, 'priority' => -1, 'published_at' => 1,], ['name' => 'enqueue_combined']);
+        $collection->createIndex(['priority' => -1, 'published_at' => 1, 'delayed_until' => 1,], ['name' => 'enqueue_combined']);
 
         foreach (static::$extraIndices as $extraIndex) {
             $collection->createIndex($extraIndex[0], $extraIndex[1]);
