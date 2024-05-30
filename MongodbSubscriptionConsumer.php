@@ -55,7 +55,7 @@ class MongodbSubscriptionConsumer implements SubscriptionConsumer
                     'delayed_until' => ['$lte' => time()],
                 ],
                 [
-                    'sort' => ['priority' => -1, 'published_at' => 1],
+                    'sort' => ['delayed_until' => 1],
                     'typeMap' => ['root' => 'array', 'document' => 'array'],
                 ]
             );

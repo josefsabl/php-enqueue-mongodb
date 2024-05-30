@@ -130,7 +130,7 @@ class MongodbConsumer implements Consumer
                 'delayed_until' => ['$lte' => $now],
             ],
             [
-                'sort' => ['priority' => -1, 'published_at' => 1],
+                'sort' => ['delayed_until' => 1],
                 'typeMap' => ['root' => 'array', 'document' => 'array'],
             ]
         );
