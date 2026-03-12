@@ -21,9 +21,6 @@ class MongodbSubscriptionConsumer implements SubscriptionConsumer
      */
     private $subscribers;
 
-    /**
-     * @param MongodbContext $context
-     */
     public function __construct(MongodbContext $context)
     {
         $this->context = $context;
@@ -88,7 +85,7 @@ class MongodbSubscriptionConsumer implements SubscriptionConsumer
     public function subscribe(Consumer $consumer, callable $callback): void
     {
         if (false == $consumer instanceof MongodbConsumer) {
-            throw new \InvalidArgumentException(sprintf('The consumer must be instance of "%s" got "%s"', MongodbConsumer::class, get_class($consumer)));
+            throw new \InvalidArgumentException(sprintf('The consumer must be instance of "%s" got "%s"', MongodbConsumer::class, $consumer::class));
         }
 
         $queueName = $consumer->getQueue()->getQueueName();
@@ -109,7 +106,7 @@ class MongodbSubscriptionConsumer implements SubscriptionConsumer
     public function unsubscribe(Consumer $consumer): void
     {
         if (false == $consumer instanceof MongodbConsumer) {
-            throw new \InvalidArgumentException(sprintf('The consumer must be instance of "%s" got "%s"', MongodbConsumer::class, get_class($consumer)));
+            throw new \InvalidArgumentException(sprintf('The consumer must be instance of "%s" got "%s"', MongodbConsumer::class, $consumer::class));
         }
 
         $queueName = $consumer->getQueue()->getQueueName();
